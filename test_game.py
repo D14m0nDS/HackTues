@@ -9,11 +9,12 @@ class Game():
         pygame.init()
         self.running, self.playing = True, False
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
-        self.DISPLAY_W, self.DISPLAY_H = 480, 270
+        self.DISPLAY_W, self.DISPLAY_H = 720, 480
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
-        self.window = pygame.display.set_mode(((self.DISPLAY_W,self.DISPLAY_H)))
-        # self.font_name = '8_bit_wonder.ttf'
-        #self.font_name = pygame.font.get_default_font()
+        self.window = pygame.display.set_mode(((self.DISPLAY_W * 2, self.DISPLAY_H * 2)))
+
+        self.font_name = pygame.font.get_default_font()
+
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.main_menu = MainMenu(self)
         self.options = OptionsMenu(self)
@@ -54,11 +55,7 @@ class Game():
 
 #Defining our Font and Game menu's font
     def draw_text(self, text, size, x, y ):
-        menu_font = Font(
-            family = "Andomeda-eR2n.ttf",
-            size = 20,
-            weight = "bold")
-        font = pygame.font.menu_font
+        font = pygame.font.Font(self.font_name, size)
         text_surface = font.render(text, True, self.WHITE)
         text_rect = text_surface.get_rect()
         text_rect.center = (x,y)
