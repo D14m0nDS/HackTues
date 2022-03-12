@@ -21,11 +21,13 @@ width = random.randint(20, 21)
 gravity =  random.randint(0, 100)
 air_pressure =  random.randint(0, 100)
 materials = [
-    Materials("Water", 0, 5), 
-    Materials("Stone", 6, 10),
-    Materials("Water", 11, 15),
+    Materials("Grass", 0, 7), 
+    Materials("Stone", 8, 15),
+    Materials("Water", 16, 23),
+    Materials("Ice", 24, 31),
+    Materials("Sand", 32, 39)
 ]
-materials_count = 3
+materials_count = 5
 
 def planet_creator():
     j, i= 0, 0
@@ -34,7 +36,7 @@ def planet_creator():
     planet_texture = [[0 for i in range(planet.hight)] for j in range(planet.width)]
     while j < planet.width:
 
-        type_material = random.randint(0, materials_count - 1)
+        type_material = random.randint(1, materials_count - 1)
         rand = random.randint(2, 5)
         if j + rand >= planet.width:
 
@@ -45,7 +47,10 @@ def planet_creator():
 
                 print(f"x {i}")
                 print(f"y {k}")
-                planet_texture[i][k] = random.randint(materials[type_material].start_index, materials[type_material].end_index)
+                if k == 0:
+                    planet_texture[i][k] = random.randint(materials[0].start_index, materials[0].end_index)
+                else:
+                    planet_texture[i][k] = random.randint(materials[type_material].start_index, materials[type_material].end_index)
             i += 1
         j = i
         print(planet_texture)
