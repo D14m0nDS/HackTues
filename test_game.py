@@ -55,6 +55,7 @@ class Game():
 
 
 #Defining our Font and Game menu's font
+
     def draw_text(self, text, size, x, y ):
         font = pygame.font.Font(self.font_name, size)
         text_surface = font.render(text, True, self.WHITE)

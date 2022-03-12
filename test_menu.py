@@ -15,7 +15,6 @@ class Menu():
     def draw_cursor(self, surface):
         color = (255,13,5) if self.selected else (255,250,239)
         pg.draw.rect(surface, color, (80 , 270/4 - 10 + (self.curr_index*30), 320, 20) )
-        # self.cursor_rect = pg.image.load(r'./images/cursor.png')
 
     def blit_screen(self):
         self.game.window.blit(self.game.display, (0, 0))
@@ -31,17 +30,19 @@ class MainMenu(Menu):
         self.creditsx, self.creditsy = self.mid_w, self.mid_h + 90
         self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
 
-    def display_menu(self):
+    def display_menu(self, surface):
         self.run_display = True
         while self.run_display:
+
             self.game.check_events()
             self.check_input()
+            self.draw_cursor(surface)
             self.game.display.fill(self.game.BLACK)
             self.game.draw_text('MAIN MENU', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 50)
             self.game.draw_text("Start Game", 25, self.startx, self.starty)
             self.game.draw_text("Options", 25, self.optionsx, self.optionsy)
             self.game.draw_text("Credits", 25, self.creditsx, self.creditsy)
-            self.draw_cursor()
+            
             self.blit_screen()
 
 
@@ -87,17 +88,18 @@ class OptionsMenu(Menu):
         self.backx, self.backy = self.mid_w, self.mid_h + 90
         self.cursor_rect.midtop = (self.volx + self.offset, self.voly)
 
-    def display_menu(self):
+    def display_menu(self,  surface):
         self.run_display = True
         while self.run_display:
             self.game.check_events()
             self.check_input()
+            self.draw_cursor(surface)
             self.game.display.fill((0, 0, 0))
             self.game.draw_text('OPTIONS', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 50)
             self.game.draw_text("Volume", 25, self.volx, self.voly)
             self.game.draw_text("Controls", 25, self.controlsx, self.controlsy)
             self.game.draw_text("Back", 25, self.backx, self.backy)
-            self.draw_cursor()
+            
             self.blit_screen()
 
     def move_cursor(self):
@@ -142,7 +144,7 @@ class CreditsMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
 
-    def display_menu(self):
+    def display_menu(self,  surface):
         self.run_display = True
         while self.run_display:
             self.game.check_events()
