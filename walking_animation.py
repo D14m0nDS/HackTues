@@ -71,6 +71,8 @@ class Player(pg.sprite.Sprite):
 
    # Animating player
    def update(self):
+       angle = 0
+       vel = 5
        if self.walking_left_animation == True:
            self.current_sprite_index += 1
            if self.current_sprite_index >= 6:
@@ -97,6 +99,9 @@ screen = pg.display.set_mode((screen_width,screen_height))
 pg.display.set_caption("Sprite Animation")
 background = pg.image.load("background.png")
 
+angle = 0
+vel = 5
+
 # Creating the sprites and groups
 moving_sprites = pg.sprite.Group()
 player = Player(420, 300)
@@ -110,7 +115,7 @@ static_sprites.add(base)
 pg.display.set_caption("BDSM")
 icon = pg.image.load("space-station.png")
 pg.display.set_icon(icon)
-background_image = pg.image.load("background1.png")
+background_image = pg.image.load("background.png")
 
 running = True
 
@@ -119,9 +124,19 @@ while running:
     # Initialising
     pg.init()
 
+    screen.fill((255, 255, 255))
+    screen.blit(background, (0, 0))
+
     pg.time.delay(50)
 
     keys = pg.key.get_pressed()
+    x = 400
+    y = 370
+    vel = 5
+
+
+    img_copy = pg.transform.rotate(background, angle)
+    screen.blit(img_copy, (x - int(img_copy.get_width() / 2), y - int(img_copy.get_height() / 2)))
 
     # Working with keys
     for event in pg.event.get():
@@ -131,24 +146,25 @@ while running:
               break
          if event.type == pg.KEYDOWN:
              if event.key == pg.K_LEFT:
+                 angle-=vel
+                 img_copy = pg.transform.rotate(background, angle)
                  player.walking_left()
              elif event.key == pg.K_RIGHT:
+                 angle+=vel
                  player.walking_right()
              elif event.key == pg.K_UP:
                  player.doing_task()
          else:
              player.standing_still()
     # Drawing
-    screen.fill ((255, 255, 255))
 
-    # Drawing background
-    screen.blit(background, (0, 0))
-
+    img_copy = pg.transform.rotate(background, angle)
     # Drawing and updating
     moving_sprites.draw(screen)
     static_sprites.draw(screen)
     moving_sprites.update()
 
     # Update the contents of the entire display
+    pg.display.update()
     pg.display.flip()
     clock.tick(60)
