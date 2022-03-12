@@ -1,0 +1,23 @@
+ALREADY DONE:
+1. Game Menu:
+	- loading game
+	- settings:
+		- controls
+		- volume - still in progress
+2. Character Design
+3. Background Design - mainly finished but still working on it
+4. Character Movement
+5. Oxygen management - oxygen bar dropping(still haven't made the bar but have made the system to drop our oxygen)
+6. Planet's movement
+
+TO-DO LIST:
+1. Platform Instalation
+2. Merging Codes
+3. Sounds
+4. Gathering Resources 
+
+ROLES:
+- Art work/ Animations
+- Character movement and actions (look at world generation brackets)
+- World generation (each planet has its seed a random number, gravity can affect player movement, stuff like air pressure can vary how fast oxygen is consumed)
+- Visualise textures/animations

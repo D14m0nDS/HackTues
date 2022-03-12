@@ -1,4 +1,8 @@
-import pygame as pg
+import pygame as pg, sys
+import os, json
+from save_load import load_save, reset_keys
+from control_settings import Controls_Handler
+
 
 class Menu():
     def __init__(self, game):
@@ -8,8 +12,9 @@ class Menu():
         self.cursor_rect = pg.Rect(-100, 0, 0, 0)
         self.offset = - 100
 
-    def draw_cursor(self):
-        self.game.draw_text("->", 20, self.cursor_rect.x, self.cursor_rect.y)
+    def draw_cursor(self, surface):
+        color = (255,13,5) if self.selected else (255,250,239)
+        pg.draw.rect(surface, color, (80 , 270/4 - 10 + (self.curr_index*30), 320, 20) )
         # self.cursor_rect = pg.image.load(r'./images/cursor.png')
 
     def blit_screen(self):
@@ -20,7 +25,7 @@ class Menu():
 class MainMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
-        self.state = "Start"
+        self.state = "Start Game"
         self.startx, self.starty = self.mid_w, self.mid_h + 30
         self.optionsx, self.optionsy = self.mid_w, self.mid_h + 60
         self.creditsx, self.creditsy = self.mid_w, self.mid_h + 90
@@ -42,7 +47,7 @@ class MainMenu(Menu):
 
     def move_cursor(self):
         if self.game.DOWN_KEY:
-            if self.state == 'Start':
+            if self.state == 'Start Game':
                 self.cursor_rect.midtop = (self.optionsx + self.offset, self.optionsy)
                 self.state = 'Options'
             elif self.state == 'Options':
@@ -50,14 +55,14 @@ class MainMenu(Menu):
                 self.state = 'Credits'
             elif self.state == 'Credits':
                 self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
-                self.state = 'Start'
+                self.state = 'Start Game'
         elif self.game.UP_KEY:
-            if self.state == 'Start':
+            if self.state == 'Start Game':
                 self.cursor_rect.midtop = (self.creditsx + self.offset, self.creditsy)
                 self.state = 'Credits'
             elif self.state == 'Options':
                 self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
-                self.state = 'Start'
+                self.state = 'Start Game'
             elif self.state == 'Credits':
                 self.cursor_rect.midtop = (self.optionsx + self.offset, self.optionsy)
                 self.state = 'Options'
@@ -65,7 +70,7 @@ class MainMenu(Menu):
     def check_input(self):
         self.move_cursor()
         if self.game.START_KEY:
-            if self.state == 'Start':
+            if self.state == 'Start Game':
                 self.game.playing = True
             elif self.state == 'Options':
                 self.game.curr_menu = self.game.options
@@ -155,3 +160,14 @@ class VolumeMenu(Menu):
 
     def display_menu(self):
         pass
+
+class ControlMenu(Menu):
+    def __init__(self, game):
+        Menu.__init__(self,game)
+    
+    def display_menu():
+        pass
+    def move_cursor(self, Menu, Game):
+        pass
+ 
+

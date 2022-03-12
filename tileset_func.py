@@ -7,7 +7,7 @@ class Tileset:
         self.size = size
         self.margin = margin
         self.spacing = spacing
-        self.image = pygame.image.load(file)
+        self.image = pygame.image.load("./images/tileset.png")
         self.rect = self.image.get_rect()
         self.tiles = []
         self.load()
