@@ -1,27 +1,15 @@
-<<<<<<< HEAD
 import pygame as pg
+from  world_building import *
+
+planet = Planet_return_type()
 
 class map:
     def __init__(self):
-        self.map = [
-            [5, 6, 3, 2, 6, 1],
-            [3, 0, 9, 4, 3, 2],
-            [6, 1, 3, 2, 4, 6]
-        ]
-        self.h= 3
-        self.w = 6
+        self.map = planet.planet_array
+        self.planet_settings = planet.Planet
+        self.planet_size = (planet.Planet.width, planet.Planet.height)
+        self.materials = planet.materials
+        self.materials_count = planet.materials_count
 
-=======
-import pygame as pg
 
-class map:
-    def __init__(self):
-        self.map = [
-            [5, 6, 3, 2, 6, 1],
-            [3, 0, 9, 4, 3, 2],
-            [6, 1, 3, 2, 4, 6]
-        ]
-        self.h= 3
-        self.w = 6
 
->>>>>>> 7c62b8244f375c86f93a85d8b83ce12e7943ad31
