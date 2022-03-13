@@ -113,58 +113,58 @@ static_sprites.add(base)
 
 #Display setup
 pg.display.set_caption("BDSM")
-icon = pg.image.load("space-station.png")
-pg.display.set_icon(icon)
+# icon = pg.image.load("space-station.png")
+# pg.display.set_icon(icon)
 background_image = pg.image.load("background.png")
 
 running = True
 
-#Game loop
-while running:
-    # Initialising
-    pg.init()
+# Game loop
+# while running:
+#     # Initialising
+#     pg.init()
 
-    screen.fill((255, 255, 255))
-    screen.blit(background, (0, 0))
+#     screen.fill((255, 255, 255))
+#     screen.blit(background, (0, 0))
 
-    pg.time.delay(50)
+#     pg.time.delay(50)
 
-    keys = pg.key.get_pressed()
-    x = 400
-    y = 370
-    vel = 5
+#     keys = pg.key.get_pressed()
+#     x = 400
+#     y = 370
+#     vel = 5
 
 
-    img_copy = pg.transform.rotate(background, angle)
-    screen.blit(img_copy, (x - int(img_copy.get_width() / 2), y - int(img_copy.get_height() / 2)))
+#     img_copy = pg.transform.rotate(background, angle)
+#     screen.blit(img_copy, (x - int(img_copy.get_width() / 2), y - int(img_copy.get_height() / 2)))
 
-    # Working with keys
-    for event in pg.event.get():
-         if event.type == quit:
-              running = False
-              pg.quit()
-              break
-         if event.type == pg.KEYDOWN:
-             if event.key == pg.K_LEFT:
-                 angle-=vel
-                 img_copy = pg.transform.rotate(background, angle)
-                 player.walking_left()
-             elif event.key == pg.K_RIGHT:
-                 angle+=vel
-                 player.walking_right()
-             elif event.key == pg.K_UP:
-                 player.doing_task()
-         else:
-             player.standing_still()
-    # Drawing
+#     # Working with keys
+#     for event in pg.event.get():
+#          if event.type == quit:
+#               running = False
+#               pg.quit()
+#               break
+#          if event.type == pg.KEYDOWN:
+#              if event.key == pg.K_LEFT:
+#                  angle-=vel
+#                  img_copy = pg.transform.rotate(background, angle)
+#                  player.walking_left()
+#              elif event.key == pg.K_RIGHT:
+#                  angle+=vel
+#                  player.walking_right()
+#              elif event.key == pg.K_UP:
+#                  player.doing_task()
+#          else:
+#              player.standing_still()
+#     # Drawing
 
-    img_copy = pg.transform.rotate(background, angle)
-    # Drawing and updating
-    moving_sprites.draw(screen)
-    static_sprites.draw(screen)
-    moving_sprites.update()
+#     img_copy = pg.transform.rotate(background, angle)
+#     # Drawing and updating
+#     moving_sprites.draw(screen)
+#     static_sprites.draw(screen)
+#     moving_sprites.update()
 
-    # Update the contents of the entire display
-    pg.display.update()
-    pg.display.flip()
-    clock.tick(60)
+#     # Update the contents of the entire display
+#     pg.display.update()
+#     pg.display.flip()
+#     clock.tick(60)
