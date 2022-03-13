@@ -10,6 +10,6 @@ class map:
         self.planet_size = (planet.Planet.width, planet.Planet.height)
         self.materials = planet.materials
         self.materials_count = planet.materials_count
-
-
+        print(f'size planet = {self.planet_size}')
+        print(f'array planet = {planet.planet_array}')
 

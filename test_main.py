@@ -1,15 +1,14 @@
 from test_game import Game
-from controls_main import *
+# from controls_main import *
 from basic_game import *
 from window_create import Window
 
-g = Game(actions)
+g = Game()
 window_create = Window()
 
 while g.running:
-    
-    g.curr_menu.display_menu(g.display)
+    g.curr_menu.display_menu()
     g.game_loop()
     
     while g.playing:
-        pass
+        basic_game

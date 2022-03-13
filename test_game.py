@@ -4,17 +4,16 @@ from save_load import load_save
 
 
 class Game():
-    def __init__(self, actions):
+    def __init__(self):
         pygame.init()
         self.running, self.playing = True, False
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
         self.DISPLAY_W, self.DISPLAY_H = 720, 480
         
-
         self.font_name = "./font_types/Andromeda-eR2n.ttf"
 
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
-        self.main_menu = MainMenu(self, actions)
+        self.main_menu = MainMenu(self)
         self.options = OptionsMenu(self)
         self.credits = CreditsMenu(self)
         self.curr_menu = self.main_menu
@@ -47,7 +46,7 @@ class Game():
                 if event.key == pygame.K_UP:
                     self.UP_KEY = True
 
-    def reset_keys(self, actions):
+    def reset_keys(self):
         self.START_KEY, self.BACK_KEY, self.K_DOWN, self.K_UP = False, False, False, False
 
 

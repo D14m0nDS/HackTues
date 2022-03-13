@@ -1,18 +1,35 @@
 import pygame
-from world_generation import map
 from tileset_func import Tileset
 from tilemap_func import Tilemap
 from window_create import Window
 
-gen = map()
-t_set = Tileset
-t_map = Tilemap
+pygame.init()
 
-winwod_open = Window()
+clock = pygame.time.Clock()
 
-def play_menu():
-    t_set = Tileset("./images/tileset.png", (16, 16), 0, 0)
-    t_map = Tilemap(t_set, gen.width, gen.height, gen.map)
-    t_map.render() 
+
+window_open = Window()
+
+def play_game():
+    t_set = Tileset("./images/tileset.png", (16, 16), (0, 0), 0)
+    t_map = Tilemap(t_set, (16, 16))
+    t_map.draw_map(window_open.window) 
+    
+    running = True
+    while running:
+        clock.tick(60)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        window_open.window.fill((255,255,255))
+        t_map.draw_map(window_open.window) 
+        
+        pygame.display.flip()
+
+play_game()
+
+
 
 

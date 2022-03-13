@@ -5,16 +5,15 @@ from control_settings import Controls_Handler
 
 
 class Menu():
-    def __init__(self, game, actions):
+    def __init__(self, game):
         self.game = game
         self.mid_w, self.mid_h = self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2
         self.run_display = True
-        self.cursor_rect = pg.Rect(-100, 0, 0, 0)
+        self.cursor_rect = pg.Rect(0, 0, 20, 20)
         self.offset = - 100
 
-    def draw_cursor(self, surface):
-        color = (255,250,239)
-        pg.draw.rect(surface, color, (80 , 270/4 - 10 + (self.cursor_rect.x*30), 320, 20) )
+    def draw_cursor(self):
+        self.game.draw_text('->', 20, self.cursor_rect.x, self.cursor_rect.y)
 
     def blit_screen(self):
         self.game.window.blit(self.game.display, (0, 0))
@@ -22,27 +21,25 @@ class Menu():
         self.game.reset_keys()
 
 class MainMenu(Menu):
-    def __init__(self, game, actions):
-        Menu.__init__(self, game, actions)
+    def __init__(self, game):
+        Menu.__init__(self, game)
         self.state = "Start Game"
         self.startx, self.starty = self.mid_w, self.mid_h + 30
         self.optionsx, self.optionsy = self.mid_w, self.mid_h + 60
         self.creditsx, self.creditsy = self.mid_w, self.mid_h + 90
         self.cursor_rect.midtop = (self.startx + self.offset, self.starty)
 
-    def display_menu(self, surface):
+    def display_menu(self):
         self.run_display = True
         while self.run_display:
-
             self.game.check_events()
             self.check_input()
-            self.draw_cursor(surface)
             self.game.display.fill(self.game.BLACK)
             self.game.draw_text('MAIN MENU', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 50)
             self.game.draw_text("Start Game", 25, self.startx, self.starty)
             self.game.draw_text("Options", 25, self.optionsx, self.optionsy)
             self.game.draw_text("Credits", 25, self.creditsx, self.creditsy)
-            
+            self.draw_cursor
             self.blit_screen()
 
 
@@ -88,12 +85,12 @@ class OptionsMenu(Menu):
         self.backx, self.backy = self.mid_w, self.mid_h + 90
         self.cursor_rect.midtop = (self.volx + self.offset, self.voly)
 
-    def display_menu(self,  surface):
+    def display_menu(self,  ):
         self.run_display = True
         while self.run_display:
             self.game.check_events()
             self.check_input()
-            self.draw_cursor(surface)
+            self.draw_cursor()
             self.game.display.fill((0, 0, 0))
             self.game.draw_text('OPTIONS', 50, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 50)
             self.game.draw_text("Volume", 25, self.volx, self.voly)
@@ -144,7 +141,7 @@ class CreditsMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
 
-    def display_menu(self,  surface):
+    def display_menu(self,  ):
         self.run_display = True
         while self.run_display:
             self.game.check_events()
@@ -156,20 +153,21 @@ class CreditsMenu(Menu):
             self.game.draw_text('MADE BY:', 25, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 + 10)
             self.blit_screen()
 
-class VolumeMenu(Menu):
-    def __init__(self, game):
-        Menu.__init__(self, game)
+# class VolumeMenu(Menu):
+#     def __init__(self, game):
+#         Menu.__init__(self, game)
 
-    def display_menu(self):
-        pass
+#     def display_menu(self):
+#         pass
 
-class ControlMenu(Menu):
-    def __init__(self, game):
-        Menu.__init__(self,game)
+# class ControlMenu(Menu):
+#     def __init__(self, game):
+#         Menu.__init__(self,game)
     
-    def display_menu():
-        pass
-    def move_cursor(self, Menu, Game):
-        save = load_save()
-        control_handler = Controls_Handler(save)
+#     def display_menu():
+#         pass
+#     def move_cursor(self, Menu, Game):
+#         pass
+#           save = load_save()
+#           control_handler = Controls_Handler(save)
  

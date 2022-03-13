@@ -16,7 +16,7 @@ class Tileset:
     def load(self):
 
         self.tiles = []
-        x0 = y0 = self.margin
+        x0, y0 = self.margin
         w, h = self.rect.size
         dx = self.size[0] + self.spacing
         dy = self.size[1] + self.spacing
@@ -24,7 +24,7 @@ class Tileset:
         for x in range(x0, w, dx):
             for y in range(y0, h, dy):
                 tile = pygame.Surface(self.size)
-                tile.blit(self.image, (0, 0), (x, y, *self.size))
+                tile.blit(self.image, (0, 0), (y, x, *self.size))
                 self.tiles.append (tile)
 
     def __str__(self):
