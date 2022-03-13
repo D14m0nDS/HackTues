@@ -1,5 +1,5 @@
 # Survival Galaxy - Space Game
-A basic game about space made with the pygame library of Python.
+A basic game about space made with the [pygame 2.1.2](https://www.pygame.org) library of [Python](https://www.python.org).
 
 ## Table Of Contents
 
