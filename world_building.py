@@ -3,12 +3,14 @@ import os
 import random
 import time
 
+
 class Planet:
     def __init__(self):
-        self.width = random.randint(20, 21)
-        self.height = 5
+        self.width = random.randint(100, 101)
+        self.height = 50
         self.gravity = random.randint(0, 100)
         self.air_pressure = random.randint(0, 100)
+
 
 class Materials:
     def __init__(self, name, start_index, end_index):
@@ -16,21 +18,21 @@ class Materials:
         self.start_index = start_index
         self.end_index = end_index
 
+
 gold, silver, oil, gold_needed, silver_needed, oil_needed, oxygen = 0, 0, 0, 0, 0, 0, 100
-width = random.randint(20, 21)
-gravity =  random.randint(0, 100)
-air_pressure =  random.randint(0, 100)
+
 materials = [
-    Materials("Grass", 0, 7), 
-    Materials("Stone", 8, 15),
-    Materials("Water", 16, 23),
-    Materials("Ice", 24, 31),
-    Materials("Sand", 32, 39)
+    Materials("Grass", 0, 5),
+    Materials("Stone", 6, 11),
+    Materials("Water", 12, 17),
+    Materials("Ice", 18, 23),
+    Materials("Sand", 24, 29)
 ]
 materials_count = 5
 
+
 def planet_creator(_planet):
-    j, i= 0, 0
+    j, i = 0, 0
     planet = _planet
     planet_texture = [[0 for i in range(planet.height)] for j in range(planet.width)]
     while j < planet.width:
@@ -38,7 +40,6 @@ def planet_creator(_planet):
         type_material = random.randint(1, materials_count - 1)
         rand = random.randint(2, 5)
         if j + rand >= planet.width:
-
             rand = planet.width - j
         while i < j + rand and i < planet.width:
 
@@ -46,12 +47,15 @@ def planet_creator(_planet):
                 if k == 0:
                     planet_texture[i][k] = random.randint(materials[0].start_index, materials[0].end_index)
                 else:
-                    planet_texture[i][k] = random.randint(materials[type_material].start_index, materials[type_material].end_index)
+                    planet_texture[i][k] = random.randint(materials[type_material].start_index,
+                                                          materials[type_material].end_index)
             i += 1
         j = i
         print(planet_texture)
 
     return planet_texture
+
+
 class Planet_return_type:
     def __init__(self):
         self.Planet = Planet()
@@ -85,5 +89,3 @@ class Planet_return_type:
 #         2
 #     elif gravity <= 50:
 #         3 # twa da e normalnoto kakto se wurti sega primerno
-
-
