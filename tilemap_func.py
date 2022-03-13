@@ -15,19 +15,12 @@ class Tilemap():
     # def draw_map(self, tileset):
     #     self.tileset[0]
 
-    def draw_map(self, screen):
+    def draw_map(self, screen, x, y):
         self.MAP_HEIGHT = len(map.map[0]) 
         self.MAP_WIDTH = len(map.map)
         for row in range(self.MAP_WIDTH):
             for col in range(self.MAP_HEIGHT):
-                
-                # print(f'row = {row}')
-                # print(f'col = {col}')
-                # print(f'map = {map.map[row][col]}')
-                # print(f'tiles = {self.tileset.tiles}')
-                # print(f'pp big = {row*self.MAP_HEIGHT + col}')
-                screen.blit(self.tileset.tiles[map.map[row][col]], (row*TILE_SIZE, col*TILE_SIZE))  
-
+                screen.blit(self.tileset.tiles[map.map[row][col]], (row*TILE_SIZE + x, col*TILE_SIZE + y))  
 
     # def create_texture(self):
     #     self.image = pygame.Surface((TILE_SIZE,TILE_SIZE))

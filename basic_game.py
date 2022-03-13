@@ -13,7 +13,7 @@ window_open = Window()
 def play_game():
     t_set = Tileset("./images/tileset.png", (16, 16), (0, 0), 0)
     t_map = Tilemap(t_set, (16, 16))
-    t_map.draw_map(window_open.window) 
+    t_map.draw_map(window_open.window, -50, 300) 
     
     running = True
     while running:
@@ -24,7 +24,7 @@ def play_game():
                 running = False
 
         window_open.window.fill((255,255,255))
-        t_map.draw_map(window_open.window) 
+        t_map.draw_map(window_open.window, -50, 300) 
         
         pygame.display.flip()
 
